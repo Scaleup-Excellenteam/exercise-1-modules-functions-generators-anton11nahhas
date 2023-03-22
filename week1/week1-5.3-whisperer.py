@@ -11,7 +11,7 @@ from binascii import hexlify
 """
 
 
-def anxious():
+def whisperer():
     with open('resources/logo.jpg', mode='rb') as logo:
         contents = logo.read(1)
         result = ''
@@ -27,5 +27,5 @@ def anxious():
             contents = logo.read(1)
 
 
-for result in anxious():
+for result in whisperer():
     print(result)
