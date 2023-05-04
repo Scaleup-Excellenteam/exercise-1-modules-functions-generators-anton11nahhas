@@ -17,7 +17,7 @@ def get_recipe_price(prices, optionals=[], **ingredients):
     total_price = 0
     if not prices:
         return 0
-    if not optionals == []:
+    if not optionals:
         for recipe in list(prices.items()):
             if optionals.count(recipe) > 0:
                 del prices[recipe]
@@ -29,4 +29,9 @@ def get_recipe_price(prices, optionals=[], **ingredients):
     return total_price
 
 
-print(get_recipe_price({'chocolate': 18, 'milk': 8}, chocolate=200, milk=100))
+def main():
+    print(get_recipe_price({'chocolate': 18, 'milk': 8}, chocolate=200, milk=100))
+
+
+if __name__ == "__main__":
+    main()
