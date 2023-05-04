@@ -10,11 +10,16 @@ def join(*lists, sep='-'):
         return None
     result = []
     for lst in lists:
-        result += lst[:]
+        result += lst
         result.append(sep)
     result.pop()
 
     return result
 
 
-print(join())
+def main():
+    print(join())
+
+
+if __name__ == "__main__":
+    main()
