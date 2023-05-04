@@ -1,6 +1,9 @@
 import binascii
 import re
 from binascii import hexlify
+
+
+import re
 """
     this function opens a jpg file and reads it as binary, the
     goal is to extract the hidden message found in that binary 
@@ -10,7 +13,6 @@ from binascii import hexlify
     and store in result.
 """
 
-import re
 
 def extract_content(file_path):
     BYTES = 1024
