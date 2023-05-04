@@ -17,6 +17,13 @@ def interleave(*lists):
             yield list[iterator]
         iterator += 1
 
+def main():
+    FIRST_PARAM = 'AB'
+    SECOND_PARAM = [1,2]
+    THIRD_PARAM = ('!', '@')
+    result = interleave(FIRST_PARAM, SECOND_PARAM, THIRD_PARAM)
+    print(list(result))
 
-result = interleave('ab', [1, 2], ('!', '@'))
-print(list(result))
+
+if __name__ == "__main__":
+    main()
