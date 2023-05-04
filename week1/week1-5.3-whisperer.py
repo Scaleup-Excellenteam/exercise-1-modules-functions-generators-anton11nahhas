@@ -10,22 +10,31 @@ from binascii import hexlify
     and store in result.
 """
 
+import re
 
-def whisperer():
-    with open('resources/logo.jpg', mode='rb') as logo:
-        contents = logo.read(1)
-        result = ''
-        while contents:
-            y = repr(contents)[2:-1]
-            x = re.sub(r'\\x[0-9A-Fa-f]{2}', '', str(y))
-            x = re.sub(r'[^ \w\.]', '', x)
-            if x.islower() or x == "!":
-                result += x
-            if len(result) > 4:
-                yield result
-                result = ''
-            contents = logo.read(1)
+def extract_content(file_path):
+    BYTES = 1024
+    with open(file_path, 'rb') as f:
+        # Read the file in chunks of 1024 bytes
+        while True:
+            chunk = f.read(BYTES)
+            if not chunk:
+                # End of file reached
+                break
+            # Search for secret messages in the chunk
+            matches = re.findall(b'[a-z]{5,}!', chunk)
+            for match in matches:
+                # Decode the match from bytes to string
+                msg = match.decode('utf-8')
+                # Yield the secret message
+                yield msg
+def main():
+    LOGO_PATH = 'resources/logo.jpg'
+    generator = extract_content(LOGO_PATH)
+
+    for message in generator:
+        print(message)
 
 
-for result in whisperer():
-    print(result)
+if __name__ == '__main__':
+    main()
